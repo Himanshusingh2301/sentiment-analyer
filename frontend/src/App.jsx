@@ -12,7 +12,7 @@ function App() {
 
     try {
       setLoading(true);
-      const res = await axios.post('http://localhost:5000/predict', {
+      const res = await axios.post('https://symentic-back.onrender.com/predict', {
         text: input,
       });
       setResult(res.data.prediction);

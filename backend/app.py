@@ -6,8 +6,7 @@ import os
 app = Flask(__name__)
 review_predictor = PredictReview()
 
-# Enable CORS for local frontend (Vite runs at localhost:5173)
-CORS(app, origins=["http://localhost:5173"])
+CORS(app, origins=["https://sentiment-analyzer-7m4c.onrender.com"])
 
 @app.route("/", methods=["GET"])
 def home():

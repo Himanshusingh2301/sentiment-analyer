@@ -40,6 +40,8 @@ body {
   transition: all 0.3s ease;
   box-shadow: 0 0 0 transparent;
   margin-right: 10px;
+  text-decoration: none; /* Important for <Link> */
+  display: inline-block;  /* Needed for padding to apply properly */
 }
 
 .nav-btn:hover {

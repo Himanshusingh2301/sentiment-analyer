@@ -1,0 +1,11 @@
+numpy
+pandas
+matplotlib
+seaborn
+spacy
+nltk
+scikit-learn
+wordcloud
+plotly
+flask
+flask_cors

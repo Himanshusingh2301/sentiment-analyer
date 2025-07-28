@@ -1,0 +1,140 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: url('/bg.png') no-repeat right  fixed;
+  background-size: contain;
+  background-color: black;
+  color: #e2e8f0;
+  min-height: 100vh;
+}
+
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1f2937;
+  padding: 1rem 2rem;
+  color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-btn {
+  background: linear-gradient(to right, #4b5563, #6b7280);
+  color: white;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 transparent;
+  margin-right: 10px;
+}
+
+.nav-btn:hover {
+  background: linear-gradient(to right, #9ca3af, #d1d5db);
+  color: #1f2937;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.signup {
+  background: linear-gradient(to right, #3b82f6, #06b6d4);
+  color: white;
+  padding: 0.5rem 1.4rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+}
+
+.signup:hover {
+  background: linear-gradient(to right, #2563eb, #0ea5e9);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.5);
+}
+
+
+/* Main Card */
+.app-card {
+  background: #1e293b;
+  color: #e2e8f0;
+  max-width: 600px;
+  margin: 4rem ;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+
+.app-card:hover {
+  transform: translateY(-5px);
+}
+
+
+
+textarea {
+  width: 90%;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  resize: none;
+  margin: 1rem 0;
+  font-size: 1rem;
+  background: #0f172a;
+  color: #e2e8f0;
+
+}
+
+textarea::placeholder {
+  color: #94a3b8;
+}
+
+button {
+  padding: 0.7rem 1.5rem;
+  background: #10b981;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #059669;
+}
+
+.result {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  padding: 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+/* Result Themes */
+.result.positive {
+  background: #064e3b;
+  color: #6ee7b7;
+  border: 1px solid #10b981;
+}
+
+.result.negative {
+  background: #7f1d1d;
+  color: #fca5a5;
+  border: 1px solid #f87171;
+}

@@ -81,7 +81,19 @@ class PredictReview:
     def test_sample(self, text):
         text = self.clean_text(text)
 
-        if any(phrase in text for phrase in ['not good', 'not satisfied', 'not happy', 'poor quality','not a good']):
+        negative_phrases = [
+        'not_good',
+        'not_satisfied',
+        'not_happy',
+        'poor_quality',
+        'not_a good',
+        'not_a good product'
+        'not_worth',
+        'not_recommend',
+         'waste_money'
+    ]
+
+        if any(phrase in text for phrase in negative_phrases):
             return 'negative'
 
         sample = self.vectorizer.transform([text])

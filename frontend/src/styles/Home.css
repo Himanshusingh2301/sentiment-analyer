@@ -33,7 +33,7 @@ body {
   background: linear-gradient(to right, #4b5563, #6b7280);
   color: white;
   border: none;
-  padding: 0.5rem 1.2rem;
+  padding: 0.4rem 1.2rem;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 500;
@@ -54,7 +54,7 @@ body {
 .signup {
   background: linear-gradient(to right, #3b82f6, #06b6d4);
   color: white;
-  padding: 0.5rem 1.4rem;
+  padding: 0.4rem 1.4rem;
   font-weight: bold;
   border: none;
   border-radius: 8px;

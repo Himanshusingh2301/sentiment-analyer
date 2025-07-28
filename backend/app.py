@@ -1,10 +1,13 @@
 from flask import Flask, request, jsonify
 from model.train_and_predict import PredictReview
 from flask_cors import CORS
+import os
 
 app = Flask(__name__)
 review_predictor = PredictReview()
-CORS(app, origins=["http://localhost:5173"]) 
+
+# Enable CORS for local frontend (Vite runs at localhost:5173)
+CORS(app, origins=["http://localhost:5173"])
 
 @app.route("/", methods=["GET"])
 def home():
@@ -21,4 +24,5 @@ def predict():
     return jsonify({"prediction": result})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Support for cloud platforms like Render
+    app.run(debug=True, host="0.0.0.0", port=port)

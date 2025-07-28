@@ -44,7 +44,7 @@ class PredictReview:
             text = re.sub(r'https?://\S+|www\.\S+', '', text)
             text = re.sub(r'<.*?>+', '', text)
             text = re.sub(f'[{re.escape(string.punctuation)}]', '', text)
-            text = re.sub(r'\n', '', text)
+            text = re.sub(r'\bnot\s+(\w+)', r'not_\1', text)
             text = re.sub(r'\w*\d\w*', '', text)
             words = re.split(r"\W+", text)
             words = [word for word in words if word and word not in self.stopword]
@@ -73,12 +73,17 @@ class PredictReview:
     def clean_text(self, text):
         text = text.lower()
         text = re.sub(r'[^\w\s]', '', str(text))
+        text = re.sub(r'\bnot\s+(\w+)', r'not_\1', text)
         words = re.split(r"\W+", text)
         words = [word for word in words if word and word not in self.stopword]
         return " ".join(words)
 
     def test_sample(self, text):
         text = self.clean_text(text)
+
+        if any(phrase in text for phrase in ['not good', 'not satisfied', 'not happy', 'poor quality']):
+            return 'negative'
+
         sample = self.vectorizer.transform([text])
         pred = self.model.predict(sample)
         return 'positive' if pred[0] == 1 else 'negative'

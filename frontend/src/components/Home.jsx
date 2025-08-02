@@ -152,7 +152,7 @@ const Home = () => {
     };
 
     return (
-        <div className="min-h-screen w-full flex items-center text-slate-200 bg-black bg-[url('/bg.png')] bg-no-repeat bg-right bg-fixed bg-contain">
+        <div className="h-screen w-full flex items-center text-slate-200 bg-black bg-[url('/bg.png')] bg-no-repeat md:bg-right bg-center bg-fixed overflow-auto bg-contain">
             {/* Navbar */}
             <nav className="fixed top-0 w-[100vw] flex justify-between items-center  bg-slate-900/80 text-white md:px-8 px-4 py-2 shadow-lg z-50">
                 <div className="flex md:ml-7 ml-0 items-center gap-1">

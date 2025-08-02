@@ -184,12 +184,12 @@ const Home = () => {
 
             <div className="flex  justify-between w-screen relative h-screen pt-15 px-10 ">
                 {/* Main Card */}
-                <div ref={cardref} className="bg-black/30 absolute sm:top-28 top-1/4 backdrop-blur-md text-slate-200 md:w-[38vw] w-[80%] p-4 md:pr-0 pr-2  rounded-2xl shadow-2xl hover:-translate-y-1 transition-transform duration-300 ease-in-out flex flex-col items-center border border-white/20">
+                <div ref={cardref} className="bg-black/30 absolute sm:top-25 top-1/4 backdrop-blur-md text-slate-200 md:w-[38vw] w-[80%] p-4 md:pr-0 pr-2  rounded-2xl shadow-2xl hover:-translate-y-1 transition-transform duration-300 ease-in-out flex flex-col items-center border border-white/20">
                     <h1 className="text-2xl font-bold mb-3 text-white">Sentiment Analysis</h1>
 
                     <div className="flex w-full items-start">
                         <textarea
-                            rows="7"
+                            rows="6"
                             value={input}
                             onChange={(e) => { setInput(e.target.value); if (e.target.value.length === 0) setResult('') }}
                             disabled={selectedreview !== null}

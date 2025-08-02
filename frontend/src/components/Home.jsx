@@ -13,7 +13,8 @@ const Home = () => {
     const [minrotate, setminrotate] = useState('');
     const [arrowrot, setarrowrot] = useState('')
     const [panelopen, setpanelopen] = useState(true);
-    const [selectedreview, setselectedreview] = useState(null)
+    const [selectedreview, setselectedreview] = useState(null);
+    const [slowResponse, setSlowResponse] = useState(false);
     const panelRef = useRef();
     const arrowRef = useRef();
     const resultRef = useRef(null);
@@ -117,6 +118,12 @@ const Home = () => {
 
     const handleCheck = async (input, itemdetail) => {
         if (!input.trim()) return;
+
+        setSlowResponse(false);  // Reset slow warning
+        const timeout = setTimeout(() => {
+            setSlowResponse(true);  // Show warning if >5 sec
+        }, 2000);
+
         try {
             setLoading(true);
             const res = await axios.post('https://symentic-back.onrender.com/predict', {
@@ -140,7 +147,7 @@ const Home = () => {
             setResult('Error occurred.');
         } finally {
             setLoading(false);
-
+            clearTimeout(timeout);
         }
     };
 
@@ -225,9 +232,13 @@ const Home = () => {
                         {loading ? 'Analyzing...' : 'Check Sentiment'}
                     </button>
 
+                    {(slowResponse) && (
+                        <p className="text-yellow-500 text-center mt-2 mr-3">⚠️ This might take a few seconds the first time. Meanwhile, feel free to check out our About or Features pages!</p>
+                    )}
+
                     {result && (
                         <div ref={resultRef}
-                            className={`mt-3 text-lg p-4 w-full mr-6 text-center font-semibold rounded-md border  transition-all ${result === 'positive'
+                            className={`mt-3 text-lg p-4 w-full mr-3.5 text-center font-semibold rounded-md border  transition-all ${result === 'positive'
                                 ? 'bg-emerald-900/60 text-emerald-300 border-emerald-500'
                                 : 'bg-red-900/60 text-red-300 border-red-500'
                                 }`}

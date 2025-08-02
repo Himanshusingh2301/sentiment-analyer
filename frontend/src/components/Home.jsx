@@ -166,7 +166,7 @@ const Home = () => {
                 </div>
 
                 <div className='flex items-center'>
-                    <div className='absolute sm:relative left-1/4 sm:left-0 top-22 sm:top-0'>
+                    <div className='absolute sm:relative  left-1/4 small:left-1/3 sm:left-0 top-22 sm:top-0'>
                         <Link className='mr-5 border-b-1 text-xl border-green-400 px-3 py-1 hover:bg-green-600 active:bg-green-600 duration-300 transition-all rounded-md' to="/about">About</Link>
                         <Link className='mr-5 border-b-1 text-xl border-orange-400 px-3 py-1 hover:bg-orange-600 active:bg-orange-600 duration-300 transition-all rounded-md' to="/features">Features</Link>
                     </div>

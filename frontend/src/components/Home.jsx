@@ -232,8 +232,8 @@ const Home = () => {
                         {loading ? 'Analyzing...' : 'Check Sentiment'}
                     </button>
 
-                    {(slowResponse) && (
-                        <p className="text-yellow-500 text-center mt-2 mr-3">⚠️ This might take a few seconds the first time. Meanwhile, feel free to check out our About or Features pages!</p>
+                    {(slowResponse && !result) && (
+                        <p className="text-yellow-500 text-center mt-2 mr-3">⚠️ This might take a few seconds for the first time. Meanwhile, feel free to check out our About or Features pages!</p>
                     )}
 
                     {result && (

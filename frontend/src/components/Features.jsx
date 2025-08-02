@@ -13,12 +13,12 @@ const features = [
   {
     icon: <CheckCircle className="text-green-400 w-6 h-6" />,
     title: "Real-Time Sentiment Analysis",
-    description: "Predicts whether a customer review is Positive or Negative as the user types in real time.",
+    description: "Instantly analyze your reviews to see if they’re Positive or Negative – in real-time!",
   },
   {
     icon: <Upload className="text-yellow-300 w-6 h-6" />,
     title: "Bulk Review Upload",
-    description: "Upload entire review datasets using CSV or Excel files for batch processing.",
+    description: "Upload your entire review dataset in CSV or Excel format to instantly analyze customer sentiment in bulk.",
   },
   {
     icon: <CheckCircle className="text-cyan-300 w-6 h-6" />,
@@ -38,12 +38,12 @@ const features = [
   {
     icon: <FileText className="text-teal-300 w-6 h-6" />,
     title: "Smart TextArea Control",
-    description: "Textarea remains disabled unless a review is selected. Ensures safe and intentional editing.",
+    description: "Textarea remains disabled when a review is selected. Ensures safe and intentional editing.",
   },
   {
     icon: <PlusCircle className="text-green-300 w-6 h-6" />,
     title: "Append New Reviews",
-    description: "Easily add new reviews to the uploaded file, predict results, and export the updated file again.",
+    description: "Easily add new reviews to the uploaded file, then predict results, and export the updated file again.",
   },
 ];
 

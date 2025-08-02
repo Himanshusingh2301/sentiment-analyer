@@ -3,8 +3,9 @@ import string
 import warnings
 import nltk
 import pandas as pd
+import joblib
+import os
 
-from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
@@ -13,16 +14,24 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 # Suppress warnings
 warnings.filterwarnings("ignore")
 
-# Download required NLTK data
-nltk.download("vader_lexicon")
 nltk.download("stopwords")
-
 
 class PredictReview:
     def __init__(self, dataset_path="amazonreviews.tsv"):
+        self.model_path = "saved_model.pkl"
+        self.vectorizer_path = "saved_vectorizer.pkl"
         self.stopword = nltk.corpus.stopwords.words("english")
-        self.data = pd.read_csv(dataset_path, sep="\t")
-        self.model, self.vectorizer = self.train_model()
+
+        if os.path.exists(self.model_path) and os.path.exists(self.vectorizer_path):
+            self.model = joblib.load(self.model_path)
+            self.vectorizer = joblib.load(self.vectorizer_path)
+            print("Model and vectorizer loaded from disk.")
+        else:
+            self.data = pd.read_csv(dataset_path, sep="\t")
+            self.model, self.vectorizer = self.train_model()
+            joblib.dump(self.model, self.model_path)
+            joblib.dump(self.vectorizer, self.vectorizer_path)
+            print("Model and vectorizer trained and saved.")
 
     def vectorize(self, train_data, test_data):
         tfidf = TfidfVectorizer()
@@ -82,16 +91,16 @@ class PredictReview:
         text = self.clean_text(text)
 
         negative_phrases = [
-        'not_good',
-        'not_satisfied',
-        'not_happy',
-        'poor_quality',
-        'not_a good',
-        'not_a good product'
-        'not_worth',
-        'not_recommend',
-         'waste_money'
-    ]
+            'not_good',
+            'not_satisfied',
+            'not_happy',
+            'poor_quality',
+            'not_a good',
+            'not_a good product',
+            'not_worth',
+            'not_recommend',
+            'waste_money'
+        ]
 
         if any(phrase in text for phrase in negative_phrases):
             return 'negative'

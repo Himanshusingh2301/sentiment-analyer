@@ -21,7 +21,11 @@ const ExportDropdown = ({ reviews }) => {
 
     // CSV
     const downloadCSV = () => {
-        const csv = unparse(reviews);
+        const cleanedReviews = reviews.map((review) => {
+            const { __rowNum__, ...rest } = review;
+            return rest;
+        });
+        const csv = unparse(cleanedReviews);
         const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
@@ -34,7 +38,11 @@ const ExportDropdown = ({ reviews }) => {
 
     // Excel
     const downloadExcel = () => {
-        const worksheet = XLSX.utils.json_to_sheet(reviews);
+        const cleanedReviews = reviews.map((review) => {
+            const { __rowNum__, ...rest } = review;
+            return rest;
+        });
+        const worksheet = XLSX.utils.json_to_sheet(cleanedReviews);
         const workbook = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(workbook, worksheet, 'Reviews');
         XLSX.writeFile(workbook, 'reviews.xlsx');
@@ -43,8 +51,11 @@ const ExportDropdown = ({ reviews }) => {
     // PDF
     const downloadPDF = () => {
         const doc = new jsPDF();
-
-        const tableData = reviews.map((review, i) => [
+        const cleanedReviews = reviews.map((review) => {
+            const { __rowNum__, ...rest } = review;
+            return rest;
+        });
+        const tableData = cleanedReviews.map((review, i) => [
             i + 1,
             review.Review || '',
             review.result || '',
@@ -72,7 +83,7 @@ const ExportDropdown = ({ reviews }) => {
             )}
 
             {open && (
-                <div ref={dropdownRef} className="absolute mt-2 w-48 right-0 z-10 rounded-md shadow-lg bg-black/10 ring-1 ring-black backdrop-blur-lg">
+                <div ref={dropdownRef} className="absolute mt-2 w-48 right-0 z-10 rounded-md shadow-lg md:bg-black/10 bg-black/70 ring-1 ring-black backdrop-blur-lg">
                     <div className="">
                         <button
                             onClick={() => { downloadCSV(); setOpen(false); }}

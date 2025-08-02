@@ -2,7 +2,7 @@ import React from 'react';
 import * as XLSX from 'xlsx';
 import ExportDropdown from './DownloadDropdown'
 
-function CustomerReviewPanel({ filename, setFilename, reviews, setReviews, setInput, setitemdetail, setResult, setselectedreview }) {
+function CustomerReviewPanel({ check, filename, setFilename, reviews, setReviews, setInput, setitemdetail, setselectedreview }) {
 
 
     const handleFileUpload = (e) => {
@@ -58,17 +58,17 @@ function CustomerReviewPanel({ filename, setFilename, reviews, setReviews, setIn
                         />
                         <label
                             htmlFor="file-upload"
-                            className="cursor-pointer bg-slate-900 text-white px-4 py-2 mr-3 rounded-md hover:bg-slate-800 transition duration-300 shadow-md"
+                            className="cursor-pointer border-slate-400 border-1   bg-slate-900 md:text-md text-sm text-white md:px-2 md:py-2 px-1 py-1 md:mr-3 mr-1 rounded-md hover:bg-slate-800 transition duration-300 shadow-md"
                         >
-                            Upload File (.xlsx/.csv)
+                            <span className='flex flex-col md:flex-row'>Upload File <span> (.xlsx/.csv)</span></span>
                         </label>
 
                         {filename && (
-                            <span className="bg-green-800 text-white text-sm px-3 py-1 mr-2 rounded-md">
+                            <span className="bg-green-800 text-white text-sm px-3 py-1 md:mr-2 mr-0 rounded-md">
                                 {filename}
                             </span>
                         )}
-                        {reviews.length > 0 && (
+                        {(reviews.length > 0 || filename) && (
 
                             <img onClick={() => {
                                 if (window.confirm('Do you want to clear all reviews?')) {
@@ -76,7 +76,7 @@ function CustomerReviewPanel({ filename, setFilename, reviews, setReviews, setIn
                                 }
                             }
                             }
-                            src="/cross.png" className='h-[24px] cursor-pointer' />
+                                src="/cross.png" className='h-[24px] cursor-pointer' />
                         )}
 
                     </div>
@@ -95,14 +95,27 @@ function CustomerReviewPanel({ filename, setFilename, reviews, setReviews, setIn
                         {reviews.map((item, index) => (
                             <div
                                 key={index}
-                                onClick={() => { setselectedreview(item.Review); setInput(item.Review); setitemdetail(item); setResult('') }}
                                 className="border border-white/10 bg-white/5 rounded-lg p-3 cursor-pointer text-slate-100 hover:bg-black transition-all ease-in"
                             >
                                 <div className='flex justify-between'>
-                                    <p>{item.Review}</p>
-                                    {item.result && (
-                                        <p className={` ${item.result === 'positive' ? ' text-emerald-300 ' : ' text-red-300 '}`}>{item.result.toUpperCase()}</p>
+                                    <p >{item.Review}</p>
+                                    {item.result ? (
+                                        <p className={item.result === 'positive' ? 'text-emerald-300' : 'text-red-300'}>
+                                            {item.result.toUpperCase()}
+                                        </p>
+                                    ) : (
+                                        <button
+                                            onClick={() => {
+                                                check(item.Review,item);
+                                                setInput(item.Review)
+                                                setselectedreview(item.Review)
+                                                setitemdetail(item)
+                                            }}
+                                            className="bg-green-700 text-white cursor-pointer md:px-2 px-1 py-0.5 md:py-1 rounded">
+                                            Check
+                                        </button>
                                     )}
+
                                 </div>
                             </div>
                         ))}

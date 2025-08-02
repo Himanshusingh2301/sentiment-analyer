@@ -1,2 +1,8 @@
 @import "tailwindcss";
 @plugin 'tailwind-scrollbar';
+
+
+@theme {
+  --breakpoint-md: 850px;
+
+}
